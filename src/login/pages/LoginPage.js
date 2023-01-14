@@ -19,15 +19,19 @@ function LoginPage() {
 
   const { singIn } = useAuth();
   const navigate = useNavigate();
-
   const changeForm = () => {
     setIsOnLogin(!isOnLogin);
   };
 
   const onLogin = (user) => {
     console.log("ksadjhf");
-    navigate("/tasks");
-    localStorage.setItem("userData", JSON.stringify({ username: user }));
+    singIn(user)
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.message) {
+          localStorage.setItem("userData", JSON.stringify(data));
+        }
+      });
   };
 
   const onRegister = (data) => {

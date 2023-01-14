@@ -26,8 +26,8 @@ function TasksPage() {
     fetch("http://localhost:8000/api/v1/todos")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.rows);
-        setTodos(data.rows);
+        console.log(data);
+        setTodos(data);
       });
   }, []);
 
